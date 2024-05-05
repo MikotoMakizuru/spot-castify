@@ -1,0 +1,21 @@
+{
+  "name": "spot-castify",
+  "version": "1.0.0",
+  "description": "Answer the questions and I will recommend a podcast for you.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MikotoMakizuru/spot-castify.git"
+  },
+  "keywords": [
+    "spotify",
+    "podcast",
+    "spot-castify"
+  ],
+  "bugs": {
+    "url": "https://github.com/MikotoMakizuru/spot-castify/issues"
+  }
+}
