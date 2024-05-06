@@ -3,8 +3,12 @@
   "version": "1.0.0",
   "description": "Answer the questions and I will recommend a podcast for you.",
   "main": "app.js",
+  "bin": {
+    "spot-castify": "./app.js"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "fix": "prettier --write . && eslint --fix .",
+    "lint": "prettier --check . && eslint ."
   },
   "repository": {
     "type": "git",
@@ -17,5 +21,18 @@
   ],
   "bugs": {
     "url": "https://github.com/MikotoMakizuru/spot-castify/issues"
+  },
+  "type": "module",
+  "devDependencies": {
+    "eslint": "^8.54.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "^3.1.0"
+  },
+  "dependencies": {
+    "commander": "^12.0.0",
+    "conf": "^12.0.0",
+    "enquirer": "^2.4.1",
+    "express": "^4.19.2",
+    "spotify-web-api-node": "^5.0.2"
   }
 }
