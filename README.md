@@ -22,9 +22,9 @@ When you answer questions, we recommend podcasts for you.
 1. Access and login your Spotify Dashboard: https://developer.spotify.com/dashboard/
 2. Choose 'Create app' and create your app.(Redirect URI：
    `http://localhost:8888/callback`)
-   ![developer spotify com_dashboard_create](https://github.com/MikotoMakizuru/spot-castify/assets/56577866/1446af45-d3cc-4602-9139-0b47817f2f9b)
+   ![developer spotify com_dashboard_create](https://github.com/MikotoMakizuru/spot-castify/assets/56577866/24bd1cb7-8c97-412e-86d3-3a307ccbfadc)
 3. Copy your 'Client ID' and 'Client Secret' for the next step.
-   ![スクリーンショット 2024-05-05 15 14 04](https://github.com/MikotoMakizuru/spot-castify/assets/56577866/aef688f4-9e66-4da4-b92e-86b7c9fe1f1f)
+   ![スクリーンショット 2024-05-05 15 14 04](https://github.com/MikotoMakizuru/spot-castify/assets/56577866/d7670d1b-b5b6-4ab4-97c8-95f82f366c3b)
 4. Run `spot-castify settoken` and enter your credentials. You can retrive access token
 
 ## Usage
@@ -43,4 +43,4 @@ Commands:
   help [command]  display help for command
 ```
 
-https://github.com/MikotoMakizuru/spot-castify/assets/56577866/79aeb3da-f350-4647-bd7f-44d63e3821f4
+https://github.com/MikotoMakizuru/spot-castify/assets/56577866/c21747c0-1cd1-474c-acf3-96ba0a9d6100
