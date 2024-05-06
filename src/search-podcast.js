@@ -16,7 +16,7 @@ const spotifyApi = new SpotifyWebApi({
 const searchPodcast = async () => {
   if (!accessToken && !refreshToken) {
     console.log(
-      "<Default> Here are some podcast recommendations from Spotify. Note: Require 'spot-castify settoken' command before the first time you run."
+      "<Default> Here are some podcast recommendations from Spotify. Note: Require 'spot-castify settoken' command before the first time you run.",
     );
     process.exit(1);
   }
@@ -50,7 +50,7 @@ const getRecommendPodcast = async () => {
 
   const categoryAnswer = await Enquirer.prompt(categoryQuestion);
   const category = categories.find(
-    (category) => category.id === categoryAnswer.category.id
+    (category) => category.id === categoryAnswer.category.id,
   );
 
   const genreNames = category.genres.map((genre) => ({

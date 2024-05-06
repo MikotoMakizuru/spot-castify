@@ -16,13 +16,13 @@ async function main() {
   program
     .command("searchPodcast", { isDefault: true })
     .description(
-      "<Default> Here are some podcast recommendations from spotify. Note:Require 'spot-castify settoken' command before the first time you run."
+      "<Default> Here are some podcast recommendations from spotify. Note:Require 'spot-castify settoken' command before the first time you run.",
     )
     .action(() => searchPodcast());
   program
     .command("settoken")
     .description(
-      "Login Spotify via authorization code flow (Refer: https://developer.spotify.com/documentation/general/guides/authorization-guide/)."
+      "Login Spotify via authorization code flow (Refer: https://developer.spotify.com/documentation/general/guides/authorization-guide/).",
     )
     .action(() => setToken());
   program.parse();

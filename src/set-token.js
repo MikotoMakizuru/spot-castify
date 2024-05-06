@@ -58,7 +58,7 @@ async function setToken() {
 
       res.send("Success! You can now close the window.");
       console.log(
-        "Successfully retrieved access token! You can start 'spot-castify'! with 'spot-castify' command."
+        "Successfully retrieved access token! You can start 'spot-castify'! with 'spot-castify' command.",
       );
 
       server.close();
@@ -68,8 +68,8 @@ async function setToken() {
 
   const server = app.listen(8888, () =>
     console.log(
-      "HTTP Server up. Now go to http://localhost:8888/login in your browser."
-    )
+      "HTTP Server up. Now go to http://localhost:8888/login in your browser.",
+    ),
   );
 }
 
