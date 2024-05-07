@@ -95,7 +95,10 @@ export default class Podcast {
         error.body.error.message === "The access token expired"
       ) {
         await this.refreshAccessToken();
+        await this.callApi();
+        return;
       }
+      console.log(error);
       throw new Error(error);
     }
   }
