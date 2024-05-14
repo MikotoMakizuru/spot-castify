@@ -35,55 +35,59 @@ export default class Podcast {
   }
 
   async getRecommendPodcast() {
-    const categoryNames = categories.map((category) => ({
-      title: category.name,
-      value: category,
-    }));
+    try {
+      const categoryNames = categories.map((category) => ({
+        title: category.name,
+        value: category,
+      }));
 
-    const categoryQuestion = {
-      type: "select",
-      name: "category",
-      message: "Which category?",
-      choices: categoryNames,
-      result() {
-        return this.focused.value;
-      },
-    };
+      const categoryQuestion = {
+        type: "select",
+        name: "category",
+        message: "Which category?",
+        choices: categoryNames,
+        result() {
+          return this.focused.value;
+        },
+      };
 
-    const categoryAnswer = await Enquirer.prompt(categoryQuestion);
-    const category = categories.find(
-      (category) => category.id === categoryAnswer.category.id,
-    );
+      const categoryAnswer = await Enquirer.prompt(categoryQuestion);
+      const category = categories.find(
+        (category) => category.id === categoryAnswer.category.id,
+      );
 
-    const genreNames = category.genres.map((genre) => ({
-      title: genre,
-    }));
+      const genreNames = category.genres.map((genre) => ({
+        title: genre,
+      }));
 
-    const genreQuestion = {
-      type: "select",
-      name: "genre",
-      message: `Choose your favorite genre from ${category.name}:`,
-      choices: genreNames,
-    };
+      const genreQuestion = {
+        type: "select",
+        name: "genre",
+        message: `Choose your favorite genre from ${category.name}:`,
+        choices: genreNames,
+      };
 
-    const genreAnswer = await Enquirer.prompt(genreQuestion);
+      const genreAnswer = await Enquirer.prompt(genreQuestion);
 
-    const searchResponse = await this.spotifyApi.searchShows(
-      genreAnswer.genre,
-      {
-        limit: 10,
-      },
-    );
-    const podcasts = searchResponse.body.shows.items;
-    const selectedPodcasts = [];
+      const searchResponse = await this.spotifyApi.searchShows(
+        genreAnswer.genre,
+        {
+          limit: 10,
+        },
+      );
+      const podcasts = searchResponse.body.shows.items;
+      const selectedPodcasts = [];
 
-    for (let i = 0; i < 3; i++) {
-      const randomIndex = Math.floor(Math.random() * podcasts.length);
-      selectedPodcasts.push(podcasts[randomIndex]);
-      podcasts.splice(randomIndex, 1);
+      for (let i = 0; i < 3; i++) {
+        const randomIndex = Math.floor(Math.random() * podcasts.length);
+        selectedPodcasts.push(podcasts[randomIndex]);
+        podcasts.splice(randomIndex, 1);
+      }
+
+      return selectedPodcasts;
+    } catch (error) {
+      throw new Error(error);
     }
-
-    return selectedPodcasts;
   }
 
   async callApi() {
@@ -98,7 +102,6 @@ export default class Podcast {
         await this.callApi();
         return;
       }
-      console.log(error);
       throw new Error(error);
     }
   }
