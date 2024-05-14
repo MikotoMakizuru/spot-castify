@@ -1,9 +1,9 @@
 import SpotifyWebApi from "spotify-web-api-node";
 import Conf from "conf";
-import Enquirer from "enquirer";
-import { categories } from "./category-data.js";
+import PodcastView from "./podcast-view.js";
 
 const config = new Conf({ projectName: "spot-castify" });
+const podcastView = new PodcastView();
 
 export default class Podcast {
   constructor() {
@@ -16,65 +16,21 @@ export default class Podcast {
   }
 
   async search() {
-    if (!this.accessToken && !this.refreshToken) {
-      console.log(
-        "<Default> Here are some podcast recommendations from Spotify. Note: Require 'spot-castify settoken' command before the first time you run.",
-      );
-      process.exit(1);
-    }
+    await podcastView.hasToken();
 
     this.spotifyApi.setAccessToken(this.accessToken);
-
     await this.callApi();
+
     const podcasts = await this.getRecommendPodcast();
-    console.log("Recommended Podcasts for you!");
-    podcasts.forEach((podcast) => {
-      console.log(`Selected Podcast Name: ${podcast.name}`);
-      console.log(`URL: ${podcast.external_urls.spotify}\n`);
-    });
+    await podcastView.displayPodcasts(podcasts);
   }
 
   async getRecommendPodcast() {
     try {
-      const categoryNames = categories.map((category) => ({
-        title: category.name,
-        value: category,
-      }));
-
-      const categoryQuestion = {
-        type: "select",
-        name: "category",
-        message: "Which category?",
-        choices: categoryNames,
-        result() {
-          return this.focused.value;
-        },
-      };
-
-      const categoryAnswer = await Enquirer.prompt(categoryQuestion);
-      const category = categories.find(
-        (category) => category.id === categoryAnswer.category.id,
-      );
-
-      const genreNames = category.genres.map((genre) => ({
-        title: genre,
-      }));
-
-      const genreQuestion = {
-        type: "select",
-        name: "genre",
-        message: `Choose your favorite genre from ${category.name}:`,
-        choices: genreNames,
-      };
-
-      const genreAnswer = await Enquirer.prompt(genreQuestion);
-
-      const searchResponse = await this.spotifyApi.searchShows(
-        genreAnswer.genre,
-        {
-          limit: 10,
-        },
-      );
+      const interested = await podcastView.askCategoryAndGenre();
+      const searchResponse = await this.spotifyApi.searchShows(interested, {
+        limit: 10,
+      });
       const podcasts = searchResponse.body.shows.items;
       const selectedPodcasts = [];
 
