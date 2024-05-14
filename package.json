@@ -1,6 +1,6 @@
 {
   "name": "spot-castify",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Answer the questions and I will recommend a podcast for you.",
   "main": "app.js",
   "bin": {
@@ -33,7 +33,6 @@
     "conf": "^12.0.0",
     "enquirer": "^2.4.1",
     "express": "^4.19.2",
-    "spot-castify": "^1.0.3",
     "spotify-web-api-node": "^5.0.2"
   }
 }
