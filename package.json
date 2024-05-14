@@ -1,6 +1,6 @@
 {
   "name": "spot-castify",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Answer the questions and I will recommend a podcast for you.",
   "main": "app.js",
   "bin": {
