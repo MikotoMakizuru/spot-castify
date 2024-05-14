@@ -4,8 +4,10 @@ import express from "express";
 import Conf from "conf";
 
 const config = new Conf({ projectName: "spot-castify" });
+const PORT_NUMBER = 8888;
 
 export default class AccessToken {
+  const;
   async get() {
     const questionClientId = {
       type: "input",
@@ -30,7 +32,7 @@ export default class AccessToken {
     const spotifyApi = new SpotifyWebApi({
       clientId: config.get("clientId"),
       clientSecret: config.get("clientSecret"),
-      redirectUri: "http://localhost:8888/callback",
+      redirectUri: `http://localhost:${PORT_NUMBER}/callback`,
     });
 
     const app = express();
@@ -64,9 +66,9 @@ export default class AccessToken {
       });
     });
 
-    const server = app.listen(8888, () =>
+    const server = app.listen(PORT_NUMBER, () =>
       console.log(
-        "HTTP Server up. Now go to http://localhost:8888/login in your browser.",
+        `HTTP Server up. Now go to http://localhost:${PORT_NUMBER}/login in your browser.`,
       ),
     );
   }
